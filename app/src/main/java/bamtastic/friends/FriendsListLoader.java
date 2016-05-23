@@ -1,11 +1,11 @@
 package bamtastic.friends;
 
-import android.support.v4.content.AsyncTaskLoader;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.BaseColumns;
+import android.support.v4.content.AsyncTaskLoader;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -14,9 +14,9 @@ import java.util.List;
 public class FriendsListLoader extends AsyncTaskLoader<List<Friend>> {
 
     private static final String TAG = FriendsListLoader.class.getSimpleName();
-    private List<Friend> mFriends;
+    private List<Friend>    mFriends;
     private ContentResolver mContentResolver;
-    private Cursor mCursor;
+    private Cursor          mCursor;
 
     public FriendsListLoader(Context context, Uri uri, ContentResolver contentResolver) {
         super(context);
@@ -26,9 +26,9 @@ public class FriendsListLoader extends AsyncTaskLoader<List<Friend>> {
     @Override
     public List<Friend> loadInBackground() {
         String[] projection = { BaseColumns._ID,
-              FriendsContract.Columns.FRIENDS_NAME,
-              FriendsContract.Columns.FRIENDS_PHONE,
-              FriendsContract.Columns.FRIENDS_EMAIL };
+                                FriendsContract.Columns.FRIENDS_NAME,
+                                FriendsContract.Columns.FRIENDS_PHONE,
+                                FriendsContract.Columns.FRIENDS_EMAIL };
 
         List<Friend> entries = new ArrayList<>();
         mCursor = mContentResolver.query(FriendsContract.URI_TABLE, projection, null, null, null);
